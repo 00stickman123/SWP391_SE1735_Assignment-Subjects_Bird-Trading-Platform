@@ -4,10 +4,10 @@ CREATE TABLE Customer (
     CustomerID INT PRIMARY KEY,
     FullName VARCHAR(50),
     Username VARCHAR(20) UNIQUE NOT NULL,
-    Password VARCHAR(50) NOT NULL,
+    [Password] VARCHAR(50) NOT NULL,
     Email VARCHAR(50) NOT NULL,
     Phone VARCHAR(20) NOT NULL,
-    Address VARCHAR(100) NOT NULL,
+    [Address] VARCHAR(100) NOT NULL,
 );
 
 CREATE TABLE Shop (
@@ -16,17 +16,18 @@ CREATE TABLE Shop (
     OwnerName VARCHAR(50) NOT NULL,
     Email VARCHAR(50) NOT NULL,
     Phone VARCHAR(20),
-    Address VARCHAR(100) NOT NULL
+    [Address] VARCHAR(100) NOT NULL
 );
 
 CREATE TABLE Product (
     ProductID INT PRIMARY KEY,
     ShopID INT NOT NULL,
     ProductName VARCHAR(50) NOT NULL,
-    Description VARCHAR(100),
+    [Description] VARCHAR(100),
     Price DECIMAL(18,2) NOT NULL,
-    Image VARCHAR(100),
+    [Image] VARCHAR(100),
     StockQuantity INT NOT NULL,
+	[Type] NVARCHAR(20) NOT NULL,
     FOREIGN KEY (ShopID) REFERENCES Shop(ShopID)
 );
 
@@ -34,9 +35,9 @@ CREATE TABLE Food (
     FoodID INT PRIMARY KEY,
     ShopID INT NOT NULL,
     FoodName VARCHAR(50) NOT NULL,
-    Description VARCHAR(100),
+    [Description] VARCHAR(100),
     Price DECIMAL(18,2) NOT NULL,
-    Image VARCHAR(100),
+    [Image] VARCHAR(100),
     StockQuantity INT NOT NULL,
     FOREIGN KEY (ShopID) REFERENCES Shop(ShopID)
 );
@@ -45,9 +46,9 @@ CREATE TABLE Accessory (
     AccessoryID INT PRIMARY KEY,
     ShopID INT NOT NULL,
     AccessoryName VARCHAR(50) NOT NULL,
-    Description VARCHAR(100),
+    [Description] VARCHAR(100),
     Price DECIMAL(18,2) NOT NULL,
-    Image VARCHAR(100),
+    [Image] VARCHAR(100),
     StockQuantity INT NOT NULL,
     FOREIGN KEY (ShopID) REFERENCES Shop(ShopID)
 );
@@ -57,7 +58,7 @@ CREATE TABLE [Order](
     CustomerID INT NOT NULL,
     ShopID INT NOT NULL,
     OrderDate DATETIME NOT NULL,
-    Status VARCHAR(20) NOT NULL,
+    [Status] VARCHAR(20) NOT NULL,
     TotalAmount DECIMAL(18,2) NOT NULL,
     FOREIGN KEY (CustomerID) REFERENCES Customer(CustomerID),
     FOREIGN KEY (ShopID) REFERENCES Shop(ShopID)
